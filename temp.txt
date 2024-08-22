@@ -1,0 +1,61 @@
+children: [
+          Expanded(
+            flex: 8,
+            child: FutureBuilder(
+              future: ApiHelper.apiHelper.fetchAPI(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text("ERROR: ${snapshot.error}"),
+                  );
+                } else if (snapshot.hasData) {
+                  List? data = snapshot.data as List;
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: CircleAvatar(
+                          child: Text(data[index].id.toString()),
+                        ),
+                        title: Text(data[index].quote.toString()),
+                        subtitle: Text(data[index].author.toString()),
+                      );
+                    },
+                  );
+                }
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              },
+            ),
+          ),
+          const Text(
+            "Random Quote",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder(
+              future: ApiHelper.apiHelper.fetchRandomQuote(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text("ERROR: ${snapshot.error}"),
+                  );
+                } else if (snapshot.hasData) {
+                  ApiQuoteModel randomQuote = snapshot.data as ApiQuoteModel;
+                  return ListTile(
+                    leading: const CircleAvatar(),
+                    title: Text(randomQuote.quote.toString()),
+                    subtitle: Text(randomQuote.author.toString()),
+                  );
+                }
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
+              },
+            ),
+          )
+        ],
