@@ -15,7 +15,7 @@ class JsonHelper {
 
     data.map((category) {
       List<JsonQuoteModel> quotes = (category['quotes'] as List).map((quote) {
-        return JsonQuoteModel.fromMap(data: quote);
+        return JsonQuoteModel.fromJson(quote);
       }).toList();
       mainData.addAll(quotes);
     }).toList();
@@ -23,12 +23,12 @@ class JsonHelper {
     return mainData;
   }
 
-  Future<List<JsonCategoriesName>> fetchCategories() async {
+  Future<List<JsonCategoryModel>> fetchCategories() async {
     String rowData = await rootBundle.loadString("assets/json/data.json");
     List data = jsonDecode(rowData);
 
-    List<JsonCategoriesName> categoryNames =
-        data.map((e) => JsonCategoriesName.fromMap(data: e)).toList();
+    List<JsonCategoryModel> categoryNames =
+        data.map((e) => JsonCategoryModel.fromJson(e)).toList();
 
     return categoryNames;
   }

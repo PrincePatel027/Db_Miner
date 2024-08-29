@@ -19,7 +19,7 @@ class DbHelper {
       version: 1,
       onCreate: (db, version) {
         String query = """
-          CREATE TABLE IF NOT EXISTS mytable (
+          CREATE TABLE IF NOT EXISTS favouriteTable (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             quote TEXT NOT NULL,
             author TEXT NOT NULL,
@@ -38,7 +38,7 @@ class DbHelper {
   ) async {
     if (database != null) {
       String query = """
-        INSERT INTO mytable (quote, author, image)
+        INSERT INTO favouriteTable (quote, author, image)
         VALUES (?, ?, ?);
       """;
       await database!.rawInsert(query, [quote, author]);
@@ -50,7 +50,7 @@ class DbHelper {
   Future<void> removeDB(int id) async {
     if (database != null) {
       String query = """
-        DELETE FROM mytable
+        DELETE FROM favouriteTable
         WHERE id = ?;
       """;
       await database!.rawDelete(query, [id]);
@@ -62,7 +62,7 @@ class DbHelper {
   Future<void> removeAllDB() async {
     if (database != null) {
       String query = """
-        DELETE FROM mytable;
+        DELETE FROM favouriteTable;
       """;
       await database!.rawDelete(query);
     } else {
@@ -73,7 +73,7 @@ class DbHelper {
   Future<List<ApiQuoteModel>> getAllData() async {
     if (database != null) {
       String query = """
-      SELECT * FROM mytable;
+      SELECT * FROM favouriteTable;
     """;
       List<Map<String, Object?>> result = await database!.rawQuery(query);
       return result.map((map) => ApiQuoteModel.fromMap(data: map)).toList();

@@ -30,7 +30,15 @@ class _LikedPageState extends State<LikedPage> {
               itemCount: data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: const CircleAvatar(),
+                  isThreeLine: true,
+                  leading: const CircleAvatar(
+                    // backgroundColor: Color(0xFF8280EB),
+                    backgroundColor: Colors.transparent,
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 44,
+                    ),
+                  ),
                   title: Text(data[index].quote.toString()),
                   subtitle: Text("~ ${data[index].author.toString()}"),
                 );

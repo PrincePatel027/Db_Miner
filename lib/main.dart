@@ -15,6 +15,10 @@ void main() {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xffcdc1ff),
+          ),
+          scaffoldBackgroundColor: const Color(0xffcdc1ff),
           textTheme: GoogleFonts.poppinsTextTheme(),
         ),
         routes: {
