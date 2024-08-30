@@ -3,6 +3,10 @@
 
 DB Miner is a Flutter application designed to demonstrate basic usage of state management with `Provider` and routing. This app features a simple structure with a home page and a liked items page.
 
+## Images
+
+![db minor](https://github.com/user-attachments/assets/887745e0-d7e7-406b-bcdb-2866d3c215c7)
+
 ## Features
 
 - **State Management**: Utilizes the `Provider` package to manage and update the state of liked items.
